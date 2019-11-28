@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import ReactJson from 'react-json-view';
 import AppContext from '../utilities/AppContext';
 
-
 const DataDisplay = ({ props }) => {
     const app = useContext(AppContext);
 
