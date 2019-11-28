@@ -20,7 +20,7 @@ const Navigation = () => {
     }
 
     return (
-        <AppBar position="static" color="primary">
+        <AppBar position="static" color="secondary">
             <div className="navbar">
                 <Toolbar>
                     <Button component={Link} to="/" color="inherit" onClick={() => handleUrl('')}>
