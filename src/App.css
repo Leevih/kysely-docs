@@ -20,3 +20,26 @@
 .App-link {
   color: #09d3ac;
 }
+
+.json-view {
+  margin-left: 5rem;
+  margin-top: 3rem;
+}
+
+.data-display-title {
+  margin-left: 10rem; 
+  color: #282c34;
+}
+
+.landing-page {
+  margin-left: 10rem;
+  margin-top: 5rem;
+}
+
+.explanation-p {
+  background-color: #F9F9F9;
+}
+
+.main-p-container {
+  width: 65rem;
+}
