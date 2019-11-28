@@ -8,29 +8,31 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
 const Navigation = () => {
-    const [ currentUrl, setCurrentUrl ] = useState('');
+    const [currentUrl, setCurrentUrl] = useState('');
 
     const version = 1;
 
     return (
         <AppBar position="static">
-            <Toolbar>
-                <Button component={Link} to="/" color="inherit" onClick={() => setCurrentUrl('')}>
-                    Kotisivu
+            <div className="navbar">
+                <Toolbar>
+                    <Button component={Link} to="/" color="inherit" onClick={() => setCurrentUrl('')}>
+                        Kotisivu
                 </Button>
-                <Button component={Link} to="/kysymykset" color="inherit" onClick={() => setCurrentUrl('/kysymykset')}>
-                    Kysymykset
+                    <Button component={Link} to="/kysymykset" color="inherit" onClick={() => setCurrentUrl('/kysymykset')}>
+                        Kysymykset
                 </Button>
-                <Button component={Link} to="/vastaukset" color="inherit" onClick={() => setCurrentUrl('/vastaukset')}>
-                    Vastaukset
+                    <Button component={Link} to="/vastaukset" color="inherit" onClick={() => setCurrentUrl('/vastaukset')}>
+                        Vastaukset
                 </Button>
-                <Button component={Link} to="/kyselyt" color="inherit" onClick={() => setCurrentUrl('/kyselyt')}>
-                    Kyselyt
+                    <Button component={Link} to="/kyselyt" color="inherit" onClick={() => setCurrentUrl('/kyselyt')}>
+                        Kyselyt
                 </Button>
-                <Typography style={{ marginLeft: '300px' }}>
-                    {currentUrl !== '' ? `http://kyselyhomma${version}.herokuapp.com${currentUrl}` : null}
-                </Typography>
-            </Toolbar>
+                    <Typography style={{ marginLeft: '5rem' }}>
+                        {currentUrl !== '' ? `http://kyselyhomma${version}.herokuapp.com${currentUrl}` : null}
+                    </Typography>
+                </Toolbar>
+            </div>
         </AppBar>
     )
 }

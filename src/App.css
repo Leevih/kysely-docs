@@ -21,25 +21,44 @@
   color: #09d3ac;
 }
 
-.json-view {
-  margin-left: 5rem;
-  margin-top: 3rem;
+.navbar {
+  margin-left: 23%;
 }
 
-.data-display-title {
-  margin-left: 10rem; 
-  color: #282c34;
+html {
+  height: 100%;
 }
 
-.landing-page {
-  margin-left: 10rem;
-  margin-top: 5rem;
+body {
+
+  position: static;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.explanation-p {
-  background-color: #F9F9F9;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
 }
 
-.main-p-container {
-  width: 65rem;
+.content {
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+  grid-column: 2 / 2;
+
+}
+
+footer {
+  position: static;
+  
+
+  height: 1rem;
+  padding: 1rem;
+
+  grid-row: 2/2;
 }

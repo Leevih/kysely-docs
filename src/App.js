@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navigation from './components/Navigation';
 import DataDisplay from './components/DataDisplay';
 import Kotisivu from './components/Kotisivu';
+import Footer from './components/Footer';
 
 import { AppProvider } from './utilities/AppContext';
 import appReducer from './utilities/appReducer';
@@ -90,6 +91,7 @@ const App = () => {
             <Kotisivu />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </AppProvider>
   );
