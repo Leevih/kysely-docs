@@ -14,6 +14,7 @@ import restService from './utilities/rest-service';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import grey from '@material-ui/core/colors/grey';
+import loadingReducer from './utilities/loadingReducer';
 
 const theme = createMuiTheme({
   palette: {
@@ -32,10 +33,16 @@ const initialState = {
   currentUrl: ''
 };
 
-
+const initLoadingState = {
+  answersLoading: true,
+  questionsLoading: true,
+  pollsLoading: true,
+  allDone: false,
+}
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
+  const [loadingState, loadingDispatch] = useReducer(loadingReducer, initLoadingState)
 
   useEffect(() => {
     //fetching answers
@@ -54,9 +61,11 @@ const App = () => {
       .fetchQuestions()
       .then(res => {
         dispatch({ type: 'SET_QUESTIONS', payload: res.data });
+        loadingDispatch({ type: 'QUESTIONS_LOADING', payload: false })
         console.log('questions success')
       })
       .catch(error => {
+        loadingDispatch({ type: 'QUESTIONS_LOADING', payload: true })
         console.log('error fecthing questions')
       })
 
@@ -65,6 +74,7 @@ const App = () => {
       .fetchPolls()
       .then(res => {
         dispatch({ type: 'SET_POLLS', payload: res.data });
+        loadingDispatch({ type: 'ANSWERS_LOADING', payload: false })
         console.log('polls success')
       })
       .catch(error => {
@@ -75,7 +85,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppProvider value={{ state, dispatch }}>
+      <AppProvider value={{ state, dispatch, loadingState }}>
         <Router>
           <div>
             <Navigation />

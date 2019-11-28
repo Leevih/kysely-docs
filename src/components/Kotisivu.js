@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import ReactJson from 'react-json-view';
 import { Link } from 'react-router-dom';
 
 import InteractiveGetDemo from './InteractiveGetDemo';
+import AppContext from '../utilities/AppContext';
 
 const teema = 'summerfruit';
 
@@ -12,6 +13,8 @@ const displayUrl = (endpoint) => {
 }
 
 const Kotisivu = () => {
+    const app = useContext(AppContext);
+
     return (
         <div className="container">
             <div className="content">
@@ -54,7 +57,6 @@ const Kotisivu = () => {
 
                         Data näyttää vastaavalta, mutta alla näkyvä esimerkki on rajattu vain yhteen tulokseen. Navigaatiopalkista pääset tarkastelemaan kaikkea dataa.
                 </p>
-                <InteractiveGetDemo theme={teema}/>
                 </div>
             </div>
         </div>
