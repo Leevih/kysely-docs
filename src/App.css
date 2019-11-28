@@ -60,5 +60,21 @@ footer {
   height: 1rem;
   padding: 1rem;
 
-  grid-row: 2/2;
+  margin-top: 5rem;
+
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.demo-container {
+  margin-top: 1rem;
+  margin-bottom: 10rem;
+}
+
+.interactive-demo {
+  margin-top: 2rem;
+}
+
+.main-p-container {
+  margin-top: 2rem;
 }

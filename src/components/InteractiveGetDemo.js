@@ -27,13 +27,14 @@ const InteractiveGetDemo = ({ theme }) => {
                 return;
             }
             default: {
-                //setCurrentDemoData(app.state.questions[0]);
+                setCurrentDemoData(app.state.questions[0]);
+                return;
             }
         }
     }
 
     return (
-        <div>
+        <div className="interactive-demo">
             <Button
                 onClick={() => handleDemoInteraction('kysymykset')}
             >
@@ -49,10 +50,11 @@ const InteractiveGetDemo = ({ theme }) => {
             >
                 GET kyselyt
             </Button>
-            <div>
+            <div className="demo-container">
                 <ReactJson 
                 src={currentDemoData}
                 theme={theme}
+                enableClipboard={false}
                 />
             </div>
         </div>
