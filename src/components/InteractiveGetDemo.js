@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import { Button } from '@material-ui/core';
 import ReactJson from 'react-json-view';
@@ -7,7 +7,16 @@ import AppContext from '../utilities/AppContext';
 
 const InteractiveGetDemo = ({ theme }) => {
     const [currentDemoData, setCurrentDemoData] = useState({});
+    const [visibleJson, setVisibleJson] = useState(false);
     const app = useContext(AppContext);
+
+    useEffect(() => {
+        if ('content' in currentDemoData || 'name' in currentDemoData) {
+            setVisibleJson(true);
+        } else {
+            setVisibleJson(false);
+        }
+    }, [currentDemoData])
 
     const handleDemoInteraction = (action) => {
         switch (action) {
@@ -27,7 +36,6 @@ const InteractiveGetDemo = ({ theme }) => {
                 return;
             }
             default: {
-                setCurrentDemoData(app.state.questions[0]);
                 return;
             }
         }
@@ -51,11 +59,14 @@ const InteractiveGetDemo = ({ theme }) => {
                 GET kyselyt
             </Button>
             <div className="demo-container">
-                <ReactJson 
-                src={currentDemoData}
-                theme={theme}
-                enableClipboard={false}
+                {visibleJson ? <ReactJson
+                    src={currentDemoData}
+                    theme={theme}
+                    enableClipboard={false}
                 />
+                    :
+                    null
+                }
             </div>
         </div>
     )

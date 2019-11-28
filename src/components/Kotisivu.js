@@ -56,7 +56,9 @@ const Kotisivu = () => {
                         , GET pyynnön kautta.
 
                         Data näyttää vastaavalta, mutta alla näkyvä esimerkki on rajattu vain yhteen tulokseen. Navigaatiopalkista pääset tarkastelemaan kaikkea dataa.
+                        
                 </p>
+                <InteractiveGetDemo theme={teema}/>
                 </div>
             </div>
         </div>
