@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import ReactJson from 'react-json-view';
 import { Link } from 'react-router-dom';
@@ -14,6 +14,15 @@ const displayUrl = (endpoint) => {
 
 const Kotisivu = () => {
     const app = useContext(AppContext);
+
+    useEffect(() => {
+        if( app.loadingState.answersLoading   ===   false ) {
+              app.loadingDispatch({ type: 'ALL_DONE', payload: true })
+              console.log('all loadings have now completed')
+            }
+        console.log('effect running once')
+        console.log(app.loadingState.answersLoading)
+      }, [])
 
     return (
         <div className="container">
@@ -58,8 +67,9 @@ const Kotisivu = () => {
                         Data näyttää vastaavalta, mutta alla näkyvä esimerkki on rajattu vain yhteen tulokseen. Navigaatiopalkista pääset tarkastelemaan kaikkea dataa.
                         
                 </p>
-                <InteractiveGetDemo theme={teema}/>
+                { app.loadingState.allDone ? <InteractiveGetDemo theme={teema}/> : 'loading...' }
                 </div>
+                <button onClick={() => console.log(app.loadingState.allDone)}></button>
             </div>
         </div>
     )

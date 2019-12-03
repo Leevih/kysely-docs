@@ -29,7 +29,6 @@ const initialState = {
   answers: [],
   questions: [],
   polls: [],
-  ANSWERS_SUCCESS: false,
   currentUrl: ''
 };
 
@@ -50,22 +49,24 @@ const App = () => {
       .fetchAnswers()
       .then(res => {
         dispatch({ type: 'SET_ANSWERS', payload: res.data });
+        dispatch({ type: 'ANSWERS_LOADING', payload: false });
         console.log('answers success');
       })
-      .catch(error => {
+/*       .catch(error => {
+        dispatch({ type: 'ANSWERS_LOADING', payload: true });
         console.log('error fetching answers');
-      })
+      }) */
 
     //fetching questions
     restService
       .fetchQuestions()
       .then(res => {
         dispatch({ type: 'SET_QUESTIONS', payload: res.data });
-        loadingDispatch({ type: 'QUESTIONS_LOADING', payload: false })
+        loadingDispatch({ type: 'QUESTIONS_LOADING', payload: false });
         console.log('questions success')
       })
       .catch(error => {
-        loadingDispatch({ type: 'QUESTIONS_LOADING', payload: true })
+        loadingDispatch({ type: 'QUESTIONS_LOADING', payload: true });
         console.log('error fecthing questions')
       })
 
@@ -74,18 +75,20 @@ const App = () => {
       .fetchPolls()
       .then(res => {
         dispatch({ type: 'SET_POLLS', payload: res.data });
-        loadingDispatch({ type: 'ANSWERS_LOADING', payload: false })
+        loadingDispatch({ type: 'POLLS_LOADING', payload: false });
         console.log('polls success')
       })
       .catch(error => {
-        console.log('error fecthing polls')
+        loadingDispatch({ type: 'POLLS_LOADING', payload: true });
+        console.log('error fecthing polls');
       })
 
   }, [])
 
+
   return (
     <ThemeProvider theme={theme}>
-      <AppProvider value={{ state, dispatch, loadingState }}>
+      <AppProvider value={{ state, dispatch, loadingState, loadingDispatch}}>
         <Router>
           <div>
             <Navigation />
