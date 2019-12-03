@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import DataDisplay from './components/DataDisplay';
 import Kotisivu from './components/Kotisivu';
 import Footer from './components/Footer';
+import FomrsPage from './components/FormsPage';
 
 import { AppProvider } from './utilities/AppContext';
 import appReducer from './utilities/appReducer';
@@ -112,8 +113,11 @@ const App = () => {
                   data: state.polls
                 }} />
             </Route>
-            <Route path="/">
+            <Route path="/" exact>
               <Kotisivu />
+            </Route>
+            <Route path="/form-example" exact>
+                <FomrsPage />
             </Route>
           </Switch>
           <Footer />

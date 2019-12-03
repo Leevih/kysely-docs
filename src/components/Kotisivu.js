@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 
 import ReactJson from 'react-json-view';
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 import InteractiveGetDemo from './InteractiveGetDemo';
 import AppContext from '../utilities/AppContext';
+import restService from '../utilities/rest-service';
 
 const teema = 'summerfruit';
 
@@ -14,6 +16,14 @@ const displayUrl = (endpoint) => {
 
 const Kotisivu = () => {
     const app = useContext(AppContext);
+
+    const handlePost = (data) => {
+        restService
+            .post({
+                post: '',
+                data
+            })
+    }
 
     return (
         <div className="container">
@@ -36,6 +46,13 @@ const Kotisivu = () => {
                         theme={teema}
                         enableClipboard={false}
                     />
+{/*                     <Button
+                        color="secondary"
+                        style={{ marginTop: '1rem', }}
+                        onClick={() => handlePost({ data: postVastaus, post: 'https://kyselyhomma1.herokuapp.com/vastaukset' })}
+                    >
+                        LÄHETÄ
+                    </Button> */}
                     <h3>1.2 Kysymksen lähettäminen</h3>
                     <p className="explanation-p">
                         Taas sama homma, mutta tällä kertaa vaihda vain kysymys-objektin paikalle samalla tavalla käyttäytyvä kysely-objekti.
@@ -45,6 +62,13 @@ const Kotisivu = () => {
                         theme={teema}
                         enableClipboard={false}
                     />
+{/*                     <Button
+                        color="secondary"
+                        style={{ marginTop: '1rem' }}
+                        onClick={() => handlePost({ data: postKysymys, post: 'https://kyselyhomma1.herokuapp.com/kysymykset' })}
+                    >
+                        LÄHETÄ
+                    </Button> */}
                     <h3>1.2 Kyselyn lähettäminen</h3>
                     <p>Tämä on vielä kesken.</p>
                 </div>
@@ -56,9 +80,9 @@ const Kotisivu = () => {
                         , GET pyynnön kautta.
 
                         Data näyttää vastaavalta, mutta alla näkyvä esimerkki on rajattu vain yhteen tulokseen. Navigaatiopalkista pääset tarkastelemaan kaikkea dataa.
-                        
+
                 </p>
-                <InteractiveGetDemo theme={teema}/>
+                    <InteractiveGetDemo theme={teema} />
                 </div>
             </div>
         </div>
