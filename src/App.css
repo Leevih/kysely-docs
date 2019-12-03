@@ -80,3 +80,11 @@ footer {
 .json-view {
   min-height: 100vh;
 }
+
+.open-question {
+  max-width: 20rem;
+}
+
+.more-margin {
+  margin-top: 1.25rem;
+}

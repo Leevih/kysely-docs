@@ -35,6 +35,9 @@ const Navigation = () => {
                     <Button component={Link} to="/kyselyt" color="inherit" onClick={() => handleUrl('/kyselyt')}>
                         Kyselyt
                 </Button>
+                <Button component={Link} to="/form-example" color="inherit" onClick={() => handleUrl('/')}>
+                    Form esimerkit
+                </Button>
                 </Toolbar>
             </div>
         </AppBar>
