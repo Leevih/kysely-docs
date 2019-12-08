@@ -24,6 +24,27 @@ const appReducer = (state, action) => {
                 ...state,
                 currentUrl: action.payload,
             }
+        case 'ADD_OPTION':
+            {
+                return {
+                    ...state,
+                    options: state.options.concat(action.payload)
+                }
+            }
+        case 'REMOVE_OPTION':
+            {
+                return {
+                    ...state,
+                    options: action.payload,
+                }
+            }
+        case 'CLEAN_OPTIONS':
+            {
+                return {
+                    ...state,
+                    options: [],
+                }
+            }
         default: {
             return state;
         }

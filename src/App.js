@@ -31,7 +31,8 @@ const initialState = {
   questions: [],
   polls: [],
   ANSWERS_SUCCESS: false,
-  currentUrl: ''
+  currentUrl: '',
+  options: [],
 };
 
 const initLoadingState = {
