@@ -25,14 +25,13 @@ const FormsPage = () => {
         setOpenList(!openList);
     }
 
-    const handleRemoveItem = (item) => {
-        const newOptions = app.state.options.filter(data => data !== item);
-        if( newOptions.length > 1 ) {
-            app.dispatch({ type: 'CLEAN_OPTIONS' })
-        }
-        app.dispatch({ type: 'REMOVE_OPTION', newOptions })
+    const handleSubmit = () => {
+        setType('');
+        setOpenPreview(false);
+        handleChange('cleanup');
+        app.dispatch({ type: 'CLEAN_OPTIONS' });
+        console.log('done cleaning up the form fields');
     }
-
 
     return (
         <div className="container">
@@ -52,16 +51,18 @@ const FormsPage = () => {
                 </form>
                 <TypeMenu state={{ type, setType }} margin="normal" />
                 {
-                    openList ? <ListModal handleChangeOpen={handleChangeOpen} openList={openList} handleRemoveItem={handleRemoveItem}/> : null
+                    openList ? <ListModal handleChangeOpen={handleChangeOpen} openList={openList}/> : null
                 }
                 {type === 'monivalinta' ? <Button onClick={handleChangeOpen}>Lisää vastausvaihtoehtoja</Button> : null}
+                
+                <br/>
                 <Button
                     onClick={handleShowPreview}
                 >
                     Esikatsele
                 </Button>
                 {
-                    openPreview ? <PreviewModal handleShowPreview={handleShowPreview} openPreview={openPreview} handleRemoveItem={handleRemoveItem} /> : null
+                    openPreview ? <PreviewModal handleSubmit={handleSubmit} handleShowPreview={handleShowPreview} openPreview={openPreview} type={type} question={values.kysymys} /> : null
                 }
             </div>
         </div>
