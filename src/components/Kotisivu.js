@@ -95,7 +95,7 @@ const Kotisivu = () => {
 
                     <InteractiveGetDemo theme={teema} />
                 </div>
-                <button onClick={() => console.log(app.loadingState.allDone)}></button>
+                <button onClick={() => console.log(app.loadingState.allDone)}>test</button>
             </div>
         </div>
     )

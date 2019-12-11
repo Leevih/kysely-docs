@@ -30,7 +30,9 @@ const initialState = {
   answers: [],
   questions: [],
   polls: [],
-  currentUrl: ''
+  ANSWERS_SUCCESS: false,
+  currentUrl: '',
+  options: [],
 };
 
 const initLoadingState = {
