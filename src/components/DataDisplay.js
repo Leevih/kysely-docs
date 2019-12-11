@@ -10,7 +10,7 @@ const DataDisplay = ({ props }) => {
             <div className="content">
                 <h2 className="data-display-title" >{props.title}</h2>
                 <p>
-                    {app.state.currentUrl}
+                    <a href={app.state.currentUrl}>{app.state.currentUrl}</a>
                 </p>
                 <div className="json-view">
                     <ReactJson 

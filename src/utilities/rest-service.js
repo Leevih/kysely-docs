@@ -19,5 +19,6 @@ const postItem = (item) => {
 export default { 
     fetchAnswers,
     fetchQuestions,
-    fetchPolls
+    fetchPolls,
+    postItem
  }

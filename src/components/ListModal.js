@@ -32,12 +32,14 @@ const ListMOdal = ({ handleChangeOpen, openList }) => {
         setTxt('')
     }
 
-    const handleRemoveItem = (item) => {
+    const handleRemoveItem = (event) => {
+        const item = event.target.textContent
         const newOptions = app.state.options.filter(data => data !== item);
-        if( newOptions.length > 1 ) {
+        console.log(newOptions)
+        if (newOptions.length < 1) {
             app.dispatch({ type: 'CLEAN_OPTIONS' })
         }
-        app.dispatch({ type: 'REMOVE_OPTION', newOptions })
+        app.dispatch({ type: 'REMOVE_OPTION', payload: newOptions })
     }
 
     return (
@@ -47,10 +49,10 @@ const ListMOdal = ({ handleChangeOpen, openList }) => {
                 <List component="nav" aria-label="contacts">
                     {
                         app.state.options.map(item =>
-                            <ListItem 
-                            button={true} 
-                            onClick={(item) => handleRemoveItem(item)} 
-                            key={item + Math.random()}>
+                            <ListItem
+                                button={true}
+                                onClick={handleRemoveItem}
+                                key={item + Math.random()}>
                                 <ListItemText primary={item} />
                             </ListItem>
                         )
@@ -70,7 +72,12 @@ const ListMOdal = ({ handleChangeOpen, openList }) => {
                     onClick={() => saveItem()}
                 >
                     Lisää
-            </Button>
+                </Button>
+                <Button className="close-button"
+                    onClick={handleChangeOpen}
+                >
+                    X
+                </Button>
             </DialogContent>
         </Dialog>
     )

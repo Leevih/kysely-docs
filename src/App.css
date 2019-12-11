@@ -88,3 +88,7 @@ footer {
 .more-margin {
   margin-top: 1.25rem;
 }
+
+.close-button {
+  float: right;
+}

@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import ReactJson from 'react-json-view';
 import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core';
 
 import InteractiveGetDemo from './InteractiveGetDemo';
 import AppContext from '../utilities/AppContext';
@@ -17,16 +16,6 @@ const displayUrl = (endpoint) => {
 const Kotisivu = () => {
     const app = useContext(AppContext);
 
-
-    useEffect(() => {
-        if( app.loadingState.answersLoading   ===   false ) {
-              app.loadingDispatch({ type: 'ALL_DONE', payload: true })
-              console.log('all loadings have now completed')
-            }
-        console.log('effect running once')
-        console.log(app.loadingState.answersLoading)
-      }, [])
-
     const handlePost = (data) => {
         restService
             .post({
@@ -40,8 +29,7 @@ const Kotisivu = () => {
             <div className="content">
                 <h1>Kyselyrajapinnan ohjeet</h1>
                 <p>
-                    Jokaisella erillisellä sivulla näet kyseistä endpointtia vastaavan url osoitteen.
-                    Osoite näkyy navigaatiopalkissa, josta saat sen kopioitua klikkaamalla.
+                    Jokaisella erillisellä sivulla näet kyseistä dataa vastaavan url-osoitteen.
             </p>
                 <div className="main-p-container">
                     <h2>1. Post ohjeet</h2>
@@ -95,7 +83,6 @@ const Kotisivu = () => {
 
                     <InteractiveGetDemo theme={teema} />
                 </div>
-                <button onClick={() => console.log(app.loadingState.allDone)}>test</button>
             </div>
         </div>
     )

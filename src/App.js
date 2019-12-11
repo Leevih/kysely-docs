@@ -30,7 +30,6 @@ const initialState = {
   answers: [],
   questions: [],
   polls: [],
-  ANSWERS_SUCCESS: false,
   currentUrl: '',
   options: [],
 };
@@ -39,12 +38,11 @@ const initLoadingState = {
   answersLoading: true,
   questionsLoading: true,
   pollsLoading: true,
-  allDone: false,
 }
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
-  const [loadingState, loadingDispatch] = useReducer(loadingReducer, initLoadingState)
+  const [loadingState, loadingDispatch] = useReducer(loadingReducer, initLoadingState);
 
   useEffect(() => {
     //fetching answers
@@ -52,13 +50,13 @@ const App = () => {
       .fetchAnswers()
       .then(res => {
         dispatch({ type: 'SET_ANSWERS', payload: res.data });
-        dispatch({ type: 'ANSWERS_LOADING', payload: false });
+        loadingDispatch({ type: 'ANSWERS_LOADING', payload: false });
         console.log('answers success');
       })
-/*       .catch(error => {
+      .catch(error => {
         dispatch({ type: 'ANSWERS_LOADING', payload: true });
-        console.log('error fetching answers');
-      }) */
+        console.log(error, 'error fetching answers');
+      })
 
     //fetching questions
     restService
@@ -70,7 +68,7 @@ const App = () => {
       })
       .catch(error => {
         loadingDispatch({ type: 'QUESTIONS_LOADING', payload: true });
-        console.log('error fecthing questions')
+        console.log(error, 'error fecthing questions')
       })
 
     //fetching polls
@@ -83,7 +81,7 @@ const App = () => {
       })
       .catch(error => {
         loadingDispatch({ type: 'POLLS_LOADING', payload: true });
-        console.log('error fecthing polls');
+        console.log(error, 'error fecthing polls');
       })
 
   }, [])

@@ -43,21 +43,39 @@ const InteractiveGetDemo = ({ theme }) => {
 
     return (
         <div className="interactive-demo">
+
+            {/* questions */}
+
+            {app.loadingState.questionsLoading ? 'loading...'
+                :
             <Button
-                onClick={() => handleDemoInteraction('kysymykset')}
-            >
-                GET kysymykset
-            </Button>
+                    onClick={() => handleDemoInteraction('kysymykset')}
+                >
+                    GET kysymykset
+            </Button>}
+
+            {/* answers */}
+
+            {app.loadingState.answersLoading ? 'loading...'
+                :
             <Button
-                onClick={() => handleDemoInteraction('vastaukset')}
-            >
-                GET vastaukset
+                    onClick={() => handleDemoInteraction('vastaukset')}
+                >
+                    GET vastaukset
             </Button>
+            }
+
+            {/* Polls */}
+
+            {app.loadingState.pollsLoading ? 'loading...'
+                :
             <Button
-                onClick={() => handleDemoInteraction('kyselyt')}
-            >
-                GET kyselyt
+                    onClick={() => handleDemoInteraction('kyselyt')}
+                >
+                    GET kyselyt
             </Button>
+            }
+
             <div className="demo-container">
                 {visibleJson ? <ReactJson
                     src={currentDemoData}

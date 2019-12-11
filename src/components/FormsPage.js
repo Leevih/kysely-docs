@@ -5,6 +5,7 @@ import TypeMenu from './TypeMenu';
 import useForm from '../utilities/useForm';
 import { TextField, Button } from '@material-ui/core';
 
+import PreviewModal from './PreviewModal';
 import ListModal from './ListModal'; 
 import AppContext from '../utilities/AppContext';
 
@@ -12,15 +13,26 @@ const FormsPage = () => {
     const app = useContext(AppContext);
     const [type, setType] = useState('');
     const [openList, setOpenList] = useState(false);
+    const [openPreview, setOpenPreview] = useState(false);
     const [values, handleChange] = useForm();
     const [savedValues, setSavedValues] = useState([]);
 
-
-
+    const handleShowPreview = () => {
+        setOpenPreview(!openPreview);
+    }
 
     const handleChangeOpen = () => {
         setOpenList(!openList);
     }
+
+    const handleRemoveItem = (item) => {
+        const newOptions = app.state.options.filter(data => data !== item);
+        if( newOptions.length > 1 ) {
+            app.dispatch({ type: 'CLEAN_OPTIONS' })
+        }
+        app.dispatch({ type: 'REMOVE_OPTION', newOptions })
+    }
+
 
     return (
         <div className="container">
@@ -40,12 +52,17 @@ const FormsPage = () => {
                 </form>
                 <TypeMenu state={{ type, setType }} margin="normal" />
                 {
-                    openList ? <ListModal handleChangeOpen={handleChangeOpen} openList={openList} /> : null
+                    openList ? <ListModal handleChangeOpen={handleChangeOpen} openList={openList} handleRemoveItem={handleRemoveItem}/> : null
                 }
                 {type === 'monivalinta' ? <Button onClick={handleChangeOpen}>Lisää vastausvaihtoehtoja</Button> : null}
-                <Button>
+                <Button
+                    onClick={handleShowPreview}
+                >
                     Esikatsele
                 </Button>
+                {
+                    openPreview ? <PreviewModal handleShowPreview={handleShowPreview} openPreview={openPreview} handleRemoveItem={handleRemoveItem} /> : null
+                }
             </div>
         </div>
     )
