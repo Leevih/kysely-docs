@@ -5,6 +5,7 @@ import TypeMenu from './TypeMenu';
 import useForm from '../utilities/useForm';
 import { TextField, Button } from '@material-ui/core';
 
+import PreviewModal from './PreviewModal';
 import ListModal from './ListModal'; 
 import AppContext from '../utilities/AppContext';
 
@@ -12,14 +13,24 @@ const FormsPage = () => {
     const app = useContext(AppContext);
     const [type, setType] = useState('');
     const [openList, setOpenList] = useState(false);
+    const [openPreview, setOpenPreview] = useState(false);
     const [values, handleChange] = useForm();
     const [savedValues, setSavedValues] = useState([]);
 
-
-
+    const handleShowPreview = () => {
+        setOpenPreview(!openPreview);
+    }
 
     const handleChangeOpen = () => {
         setOpenList(!openList);
+    }
+
+    const handleSubmit = () => {
+        setType('');
+        setOpenPreview(false);
+        handleChange('cleanup');
+        app.dispatch({ type: 'CLEAN_OPTIONS' });
+        console.log('done cleaning up the form fields');
     }
 
     return (
@@ -40,12 +51,19 @@ const FormsPage = () => {
                 </form>
                 <TypeMenu state={{ type, setType }} margin="normal" />
                 {
-                    openList ? <ListModal handleChangeOpen={handleChangeOpen} openList={openList} /> : null
+                    openList ? <ListModal handleChangeOpen={handleChangeOpen} openList={openList}/> : null
                 }
                 {type === 'monivalinta' ? <Button onClick={handleChangeOpen}>Lisää vastausvaihtoehtoja</Button> : null}
-                <Button>
+                
+                <br/>
+                <Button
+                    onClick={handleShowPreview}
+                >
                     Esikatsele
                 </Button>
+                {
+                    openPreview ? <PreviewModal handleSubmit={handleSubmit} handleShowPreview={handleShowPreview} openPreview={openPreview} type={type} question={values.kysymys} /> : null
+                }
             </div>
         </div>
     )

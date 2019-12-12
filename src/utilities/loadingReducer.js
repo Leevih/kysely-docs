@@ -21,13 +21,8 @@ const loadingReducer = (state, action) => {
                     pollsLoading: action.payload,
                 }
             }
-        case 'ALL_DONE':
-            {
-                return {
-                    ...state,
-                    allDone: action.payload,
-                }
-            }
+        default:
+            return state
     }
 }
 
