@@ -12,7 +12,7 @@ import AppContext from '../utilities/AppContext';
 const Navigation = () => {
     const app = useContext(AppContext);
 
-    const version = 1;
+    const version = 2;
 
     const handleUrl = (endpoint) => {
         const url = `http://kyselyhomma${version}.herokuapp.com${endpoint}`;
