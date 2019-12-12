@@ -10,7 +10,7 @@ import restService from '../utilities/rest-service';
 const teema = 'summerfruit';
 
 const displayUrl = (endpoint) => {
-    return `http://kyselyhomma2.herokuapp.com/${endpoint}`
+    return `http://kyselyhomma3.herokuapp.com/${endpoint}`
 }
 
 const Kotisivu = () => {
