@@ -44,7 +44,7 @@ const Kotisivu = () => {
                         theme={teema}
                         enableClipboard={false}
                     />
-{/*                     <Button
+                    {/*                     <Button
                         color="secondary"
                         style={{ marginTop: '1rem', }}
                         onClick={() => handlePost({ data: postVastaus, post: 'https://kyselyhomma1.herokuapp.com/vastaukset' })}
@@ -60,7 +60,7 @@ const Kotisivu = () => {
                         theme={teema}
                         enableClipboard={false}
                     />
-{/*                     <Button
+                    {/*                     <Button
                         color="secondary"
                         style={{ marginTop: '1rem' }}
                         onClick={() => handlePost({ data: postKysymys, post: 'https://kyselyhomma1.herokuapp.com/kysymykset' })}
@@ -68,7 +68,13 @@ const Kotisivu = () => {
                         LÄHETÄ
                     </Button> */}
                     <h3>1.2 Kyselyn lähettäminen</h3>
-                    <p>Tämä on vielä kesken.</p>
+                    <p>Samalla tavalla kuin kaikki muukin</p>
+                    <ReactJson
+                        src={postKysely}
+                        theme={teema}
+                        enableClipboard={false}
+                    />
+
                 </div>
                 <div className="main-p-container">
                     <h2>2. Get ohjeet</h2>
@@ -101,5 +107,17 @@ const postKysymys = {
     "content": "tämä on kysymys kyselylle, jonka id on 1",
     "kysely": {
         "kyselyId": 1
-    }
+    },
+    "vaihtoehdot":[
+        {
+            "content": "vaihtoehto 1"
+        },
+        {
+            "content": "vaihtoehto 2"
+        }
+    ]
+}
+
+const postKysely = {
+    "content": "kyselyn otsikko"
 }
